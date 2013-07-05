@@ -27,7 +27,7 @@
       <% end %>
 
       <% unless @event.persisted? -%>
-        <%= f.hidden_field :created_by,
+        <%= f.hidden_field :created_by_id,
           :value => current_user.id -%>
       <% end -%>
 
