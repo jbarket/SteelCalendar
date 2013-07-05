@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    redirect_to settings_user_path(current_user)
+    redirect_to settings_users_path
   end
 
   # GET /users/new
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to settings_user_path(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to settings_users_path, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to settings_user_path(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to settings_users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "settings" }
