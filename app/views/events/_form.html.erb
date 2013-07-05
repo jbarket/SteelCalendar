@@ -160,6 +160,21 @@
         </div>
       </div>
 
+      <% if current_user.admin? -%>
+        <div class="control-group">
+          <div class="field">
+            <%= f.label :major_convention_approved, "Major Convention Approved",
+              :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :major_convention_approved,
+                :value => @event.try(:major_convention_approved).strftime("%Y-%m-%d"),
+                :class => "datepicker span3" %>
+              <span class="help-inline">YYYY-MM-DD format</span>
+            </div>
+          </div>
+        </div>
+      <% end -%>
+
       <div class="form-actions">
         <% if @event.persisted? -%>
           <%= f.submit "Update Event",
