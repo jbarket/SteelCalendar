@@ -32,6 +32,10 @@
         <% end -%>
         <dt>Address</dt>
         <dd>
+          <% unless @event.venue.blank? -%>
+            <%= @event.venue -%><br />
+          <% end -%>
+
           <%= @event.street -%><br />
 
           <% unless @event.street2.blank? -%>
