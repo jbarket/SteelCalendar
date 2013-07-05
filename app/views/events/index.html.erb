@@ -1,0 +1,130 @@
+<script type="text/javascript">
+
+  var latitude = 0;
+  var longitude = 0;
+
+  $(function() {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      error('not supported');
+    }
+
+
+    $("#distance").change(function() {
+      $('#calendar').fullCalendar('removeEventSource',
+      '/events.json');
+      addJsonSource();
+    });
+
+  });
+
+  function success(position) {
+
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+    initializeCalendar();
+
+  }
+
+  function addJsonSource() {
+    $('#calendar').fullCalendar('addEventSource',
+      {
+        url: '/events.json',
+        type: 'GET',
+        data: {
+          latitude: latitude,
+          longitude: longitude,
+          distance: $("#distance").val()
+      }
+    });
+  }
+
+  function error() {
+
+    latitude = "";
+    longitude = "";
+
+    initializeCalendar();
+  }
+
+  function initializeCalendar() {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'title',
+        right: 'prev,next today'
+      },
+      editable: false
+    });
+
+    addJsonSource();
+
+  }
+
+
+
+</script>
+
+<div class="row-fluid sortable">
+
+  <div class="box span9">
+    <div class="box-header">
+      <h2>
+        <i class="icon-calendar"></i>
+        <span class="break"></span>
+        Calendar
+      </h2>
+    </div>
+    <div class="box-content">
+      <div id="calendar"></div>
+    </div>
+  </div>
+
+  <div class="box span3">
+    <div class="box-header" data-original-title>
+      <h2>
+        <i class="icon-list"></i>
+        <span class="break"></span>
+        Filter
+      </h2>
+    </div>
+    <div class="box-content">
+
+        <label for="distance">Distance</label>
+        <select id="distance">
+          <option value="50">50 miles</option>
+          <option value="100">100 miles</option>
+          <option value="250">250 miles</option>
+          <option value="500">500 miles</option>
+          <option value="1000">1000 miles</option>
+          <option value="All">All Events</option>
+        </select>
+
+    </div>
+  </div>
+
+<div class="box span3">
+    <div class="box-header" data-original-title>
+      <h2>
+        <i class="icon-plus"></i>
+        <span class="break"></span>
+        Add New Events
+      </h2>
+    </div>
+    <div class="box-content">
+      <p>
+        <strong>Are we missing an event?</strong>
+        <br />
+        Click the button below to add your local Warmachine events to the calendar.
+      </p>
+
+
+        <%= link_to 'Add New Event', new_event_path,
+          :class => "btn btn-primary" %>
+    </div>
+  </div>
+
+</div>

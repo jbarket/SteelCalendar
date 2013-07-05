@@ -1,0 +1,82 @@
+<div class="box span12">
+  <div class="box-header" data-original-title>
+    <h2>
+      <i class="icon-edit"></i><span class="break"></span>
+        Your Settings
+    </h2>
+  </div>
+  <div class="box-content">
+
+    <%= form_for @user, :html => {
+        :class => "form-horizontal" } do |f| %>
+
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited your settings from being saved:</h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :first_name,
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :first_name,
+              :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :last_name,
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :last_name,
+              :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :email,
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :email,
+              :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :photo, :class => "control-label" %>
+          <div class="controls">
+            <%= f.file_field :photo,
+              :class => "span6" %>
+            <% if @user.photo and @user.photo.exists? -%>
+              <span class="help-inline">
+                <%= link_to "View Current Photo",
+                  @user.photo.url, :target => "_blank" -%>
+              </span>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Update Settings",
+          :class => "btn btn-primary" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+

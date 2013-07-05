@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  starts_at: 2013-06-06 13:58:40
+  ends_at: 2013-06-06 13:58:40
+  name: MyString
+  description: MyText
+  latitude: 1.5
+  longitude: 1.5
+  street: MyString
+  street2: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  country: MyString
+
+two:
+  starts_at: 2013-06-06 13:58:40
+  ends_at: 2013-06-06 13:58:40
+  name: MyString
+  description: MyText
+  latitude: 1.5
+  longitude: 1.5
+  street: MyString
+  street2: MyString
+  city: MyString
+  state: MyString
+  zipcode: MyString
+  country: MyString

@@ -1,0 +1,27 @@
+<div id="sidebar-left" class="span2">
+
+  <div class="nav-collapse sidebar-nav">
+    <ul class="nav nav-tabs nav-stacked main-menu">
+      <li>
+        <a href="/">
+          <i class="icon-calendar"></i>
+          <span class="hidden-tablet"> Calendar</span>
+        </a>
+      </li>
+      <% if current_user -%>
+        <li>
+          <a href="/events/mine">
+            <i class="icon-group"></i>
+            <span class="hidden-tablet"> Events I'm Attending</span>
+          </a>
+        </li>
+        <li>
+          <a href="/events/manage">
+            <i class="icon-edit"></i>
+            <span class="hidden-tablet"> Mange My Events</span>
+          </a>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+</div>

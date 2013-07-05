@@ -1,0 +1,175 @@
+<div class="box span12">
+  <div class="box-header" data-original-title>
+    <h2>
+      <i class="icon-edit"></i><span class="break"></span>
+      <% if @event.persisted? -%>
+        Editing <%= @event -%>
+      <% else -%>
+        Add New Event
+      <% end -%>
+    </h2>
+  </div>
+  <div class="box-content">
+
+    <%= form_for @event, :html => {
+        :class => "form-horizontal" } do |f| %>
+
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+          <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% unless @event.persisted? -%>
+        <%= f.hidden_field :created_by,
+          :value => current_user.id -%>
+      <% end -%>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :name, :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :starts_at, "Start Date",
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :starts_at,
+              :value => @event.starts_at.strftime("%Y-%m-%d"),
+              :class => "datepicker span3" %>
+            <span class="help-inline">YYYY-MM-DD format</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :ends_at, "End Date",
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :ends_at,
+              :value => @event.ends_at.strftime("%Y-%m-%d"),
+              :class => "datepicker span3" %>
+            <span class="help-inline">YYYY-MM-DD format</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :url, "Website",
+            :class => "control-label" %>
+          <div class="controls">
+              <%= f.text_field :url, :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :description, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_area :description, :rows => 10,
+              :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :tournament_info,
+            "Tournament Information",
+            :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_area :tournament_info, :rows => 10,
+              :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :street, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :street, :class => "span6" %>
+            <br /><br />
+            <%= f.text_field :street2, :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :city, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :city %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :state, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :state -%>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :zipcode, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :zipcode %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :country, :class => "control-label" %>
+          <div class="controls">
+            <%= f.country_select :country,
+              [ "United States", "Canada" ] %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
+          <%= f.label :major_convention, "Major Convention",
+            :class => "control-label" %>
+          <div class="controls">
+            <label class="checkbox">
+              <%= f.check_box :major_convention,
+                :disabled => @event.major_convention_disabled? %>
+              Major Convention events have to be manually approved. Once approved, they'll show up regardless of distance.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <% if @event.persisted? -%>
+          <%= f.submit "Update Event",
+            :class => "btn btn-primary" %>
+        <% else -%>
+          <%= f.submit "Add New Event",
+            :class => "btn btn-primary" %>
+        <% end -%>
+      </div>
+
+    <% end %>
+  </div>
+</div>

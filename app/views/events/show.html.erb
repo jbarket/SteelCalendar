@@ -1,0 +1,183 @@
+<div class="row-fluid">
+
+  <div class="box span8">
+    <div class="box-header">
+      <h2>
+        <i class="icon-calendar"></i>
+        <span class="break"></span>
+        <%= @event -%>
+      </h2>
+      <div class="box-icon">
+        <% if current_user and (current_user.admin? or current_user == @event.created_by) -%>
+          <%= link_to "<i class='icon-wrench'></i>".html_safe, edit_event_path(@event) -%>
+        <% end -%>
+      </div>
+    </div>
+    <div class="box-content">
+
+      <%= simple_format @event.description %>
+
+      <br />
+
+      <div class="page-header">
+        <h2>When and Where</h2>
+      </div>
+
+      <dl>
+        <dt>Event Date</dt>
+        <dd><%= @event.prose_date -%></dd>
+        <% if @event.url -%>
+          <dt>Website</dt>
+          <dd><%= link_to @event.url, @event.url -%></dd>
+        <% end -%>
+        <dt>Address</dt>
+        <dd>
+          <%= @event.street -%><br />
+
+          <% unless @event.street2.blank? -%>
+            <%= @event.street2 -%><br />
+          <% end -%>
+
+          <%= @event.city -%>, <%= @event.state -%> <%= @event.zipcode -%>
+
+          <% unless @event.country.blank? -%>
+            <br />
+            <%= @event.country -%>
+          <% end -%>
+
+        </dd>
+      </dl>
+
+      <% unless @event.tournament_info.blank? -%>
+
+        <br />
+
+        <div class="page-header">
+          <h2>Tournament Information</h2>
+        </div>
+
+        <%= simple_format @event.tournament_info %>
+
+      <% end -%>
+
+    </div>
+  </div>
+
+    <div class="box span4">
+      <div class="box-header" data-original-title>
+        <h2>
+          <i class="icon-question-sign"></i>
+          <span class="break"></span>
+          Are you going?
+        </h2>
+      </div>
+      <div class="box-content">
+        <% if current_user -%>
+
+          <% if @event.going?(current_user) -%>
+            <p>
+              You <strong>are going</strong> to <%= @event -%>.
+            </p>
+
+            <%= link_to "I've changed my mind! I'm not going.",
+              nope_event_path(@event),
+              :class => "btn btn-large btn-warning" -%>
+          <% else -%>
+            <p>
+              You currently <strong>aren't going</strong>
+              to <%= @event -%>.
+            </p>
+
+            <%= link_to "I'm totally going! Sign me up.", going_event_path(@event),
+              :class => "btn btn-large btn-success" -%>
+          <% end -%>
+        <% else -%>
+          <p>
+            You must be <%= link_to "logged in",
+              new_user_session_path -%> to sign
+              up for events.
+          </p>
+        <% end -%>
+      </div>
+    </div>
+
+  <% if @event.mappable? -%>
+
+    <% content_for :head do -%>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+      <script type="text/javascript">
+        function initializeMap() {
+          var latLng = new google.maps.LatLng(<%= @event.latitude -%>, <%= @event.longitude -%>);
+
+          var mapOptions = {
+            zoom: 14,
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+
+          var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+
+        $(function() {
+          initializeMap();
+        })
+      </script>
+    <% end -%>
+
+    <div class="box span4">
+      <div class="box-header" data-original-title>
+        <h2>
+          <i class="icon-map-marker"></i>
+          <span class="break"></span>
+          Map
+        </h2>
+      </div>
+      <div class="box-content">
+        <div id="map" style="height: 300px;"></div>
+      </div>
+    </div>
+
+  <% end -%>
+
+  <% if @event.attendees.count > 0 -%>
+    <div class="box span4">
+      <div class="box-header" data-original-title>
+        <h2>
+          <i class="icon-group"></i>
+          <span class="break"></span>
+          Attendees
+        </h2>
+      </div>
+      <div class="box-content">
+
+        <ul class="attendees">
+          <% @event.attendees.order("created_at ASC").each do |a| -%>
+
+            <li>
+              <% if a.user.photo.exists? -%>
+                <%= image_tag a.user.photo.url(:thumb) -%>
+              <% else -%>
+              <% end -%>
+
+              <span class="name">
+                <%= a.user.full_name -%>
+                <span class="time">
+                  signed up at <%= a.created_at.to_date.to_s(:long) -%>
+                </span>
+              </span>
+            </li>
+
+        <% end -%>
+
+      </div>
+    </div>
+  <% end -%>
+</div>
+

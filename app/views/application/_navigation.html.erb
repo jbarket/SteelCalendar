@@ -1,0 +1,61 @@
+<div class="nav-no-collapse header-nav">
+  <ul class="nav pull-right">
+    <li class="dropdown hidden-phone">
+
+        <% if current_user -%>
+          <!--
+          <li>
+            <a class="btn" href="/events/mine">
+              <i class="icon-wrench"></i>
+            </a>
+          </li>
+          -->
+          <!-- start: User Dropdown -->
+          <li class="dropdown">
+            <a class="btn account dropdown-toggle" data-toggle="dropdown" href="#">
+              <div class="avatar">
+                <% if current_user.photo and current_user.photo.exists? -%>
+                  <%= image_tag current_user.photo.url(:thumb) -%>
+                <% end -%>
+              </div>
+              <div class="user">
+                <span class="hello">Welcome!</span>
+                <span class="name">
+                  <%= current_user.full_name -%>
+                </span>
+              </div>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-menu-title">
+
+              </li>
+              <!--
+              <li>
+                <a href="/profile">
+                  <i class="icon-user"></i>
+                  Profile
+                </a>
+              </li>
+              -->
+              <li>
+                <a href="/settings">
+                  <i class="icon-cog"></i>
+                  Settings
+                </a>
+              </li>
+              <li>
+                <%= link_to "<i class='icon-off'></i> Logout".html_safe,
+                  destroy_user_session_path,
+                  :method => :delete -%>
+              </li>
+            </ul>
+          </li>
+          <!-- end: User Dropdown -->
+        <% else -%>
+          <li>
+            <%= link_to "<i class='icon-lock'></i> Login".html_safe,
+              new_user_session_path, :class => "btn" -%>
+          </li>
+        <% end -%>
+      </ul>
+    </div>

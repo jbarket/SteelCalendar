@@ -1,0 +1,59 @@
+<div class="row-fluid">
+
+  <div class="box span12">
+    <div class="box-header">
+      <h2>
+        <i class="icon-calendar"></i>
+        <span class="break"></span>
+        Manage My Events
+      </h2>
+    </div>
+    <div class="box-content">
+
+      <% if @events.count > 0 -%>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Attendees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |e| -%>
+              <tr>
+                <td>
+                  <%= link_to "View", e, :class => "btn" -%>
+                  <%= link_to "Edit", edit_event_path(e),
+                    :class => "btn" -%>
+                <td><%= e.name -%></td>
+                <td>
+                  <%= e.starts_at.to_date.to_s(:long) -%>
+                </td>
+                <td>
+                  <%= e.ends_at.to_date.to_s(:long) -%>
+                </td>
+                <td><%= e.city -%></td>
+                <td><%= e.state -%></td>
+                <td><%= e.attendees.count -%></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      <% else -%>
+        <p>
+          You haven't created any events!
+          <%= link_to "Click here", new_event_path -%>
+          to add one now.
+        </p>
+      <% end -%>
+    </div>
+  </div>
+
+</div>
+
