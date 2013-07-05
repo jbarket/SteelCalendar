@@ -21,6 +21,7 @@ gem 'geocoder'
 gem 'unicorn'
 gem 'pry-rails'
 gem 'paperclip'
+gem 'aws-sdk', '~> 1.5.7'
 gem 'country_select'
 
 group :assets do
