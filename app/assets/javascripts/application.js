@@ -36,4 +36,8 @@
 //= require core.min.js
 //= require charts.min.js
 //= require custom.js
-
+$(function() {
+  $.datepicker.setDefaults({
+    dateFormat: "yy-mm-dd"
+  });
+}
