@@ -183,9 +183,7 @@ function template_functions(){
 
 	/* ---------- Datapicker ---------- */
 
-	$('.datepicker').datepicker({
-    dateFormat: "yy-mm-dd"
-  });
+	$('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
 
 	/* ---------- Notifications ---------- */
 	$('.noty').click(function(e){

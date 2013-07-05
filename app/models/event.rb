@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   after_validation :geocode
 
   before_validation :smart_add_url_protocol
-  validates :name, :street, :city, :state, :starts_at, :presence => true
+  validates :name, :street, :city, :state, :starts_at, :ends_at, :presence => true
 
   has_many :attendees
   has_many :users, :through => :attendees
