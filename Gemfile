@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'sqlite3'
-
 # au = gold
 gem 'devise'
 gem 'cancan'
+
+gem 'pg'
 
 # javascript
 gem 'jquery-rails'
@@ -30,3 +30,6 @@ group :assets do
 end
 
 
+group :development do
+  gem 'sqlite3'
+end
