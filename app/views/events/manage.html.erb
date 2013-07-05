@@ -33,10 +33,14 @@
                     :class => "btn" -%>
                 <td><%= e.name -%></td>
                 <td>
-                  <%= e.starts_at.to_date.to_s(:long) -%>
+                  <% unless e.starts_at.blank? -%>
+                    <%= e.starts_at.to_date.to_s(:long) -%>
+                  <% end -%>
                 </td>
                 <td>
-                  <%= e.ends_at.to_date.to_s(:long) -%>
+                  <% unless e.ends_at.blank? -%>
+                    <%= e.ends_at.to_date.to_s(:long) -%>
+                  <% end -%>
                 </td>
                 <td><%= e.city -%></td>
                 <td><%= e.state -%></td>
