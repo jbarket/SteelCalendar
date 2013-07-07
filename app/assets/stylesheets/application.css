@@ -61,3 +61,7 @@ ul.attendees li .time {
   -moz-border-radius: 0;
   border-radius: 0;
 }
+
+input[placeholder], [placeholder], [placeholder] {
+  color: #333 !important;
+}

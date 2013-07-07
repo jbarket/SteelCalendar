@@ -1,72 +1,74 @@
-<script type="text/javascript">
+<%= content_for :head do -%>
+  <script type="text/javascript">
 
-  var latitude = 0;
-  var longitude = 0;
+    var latitude = 0;
+    var longitude = 0;
 
-  $(function() {
+    $(function() {
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-      error('not supported');
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        error('not supported');
+      }
+
+
+      $("#distance").change(function() {
+        $('#calendar').fullCalendar('removeEventSource',
+        '/events.json');
+        addJsonSource();
+      });
+
+    });
+
+    function success(position) {
+
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+
+      initializeCalendar();
+
+    }
+
+    function addJsonSource() {
+      $('#calendar').fullCalendar('addEventSource',
+        {
+          url: '/events.json',
+          type: 'GET',
+          data: {
+            latitude: latitude,
+            longitude: longitude,
+            distance: $("#distance").val()
+        }
+      });
+    }
+
+    function error() {
+
+      latitude = "";
+      longitude = "";
+
+      initializeCalendar();
+    }
+
+    function initializeCalendar() {
+
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'title',
+          right: 'prev,next today'
+        },
+        editable: false
+      });
+
+      addJsonSource();
+
     }
 
 
-    $("#distance").change(function() {
-      $('#calendar').fullCalendar('removeEventSource',
-      '/events.json');
-      addJsonSource();
-    });
 
-  });
-
-  function success(position) {
-
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-
-    initializeCalendar();
-
-  }
-
-  function addJsonSource() {
-    $('#calendar').fullCalendar('addEventSource',
-      {
-        url: '/events.json',
-        type: 'GET',
-        data: {
-          latitude: latitude,
-          longitude: longitude,
-          distance: $("#distance").val()
-      }
-    });
-  }
-
-  function error() {
-
-    latitude = "";
-    longitude = "";
-
-    initializeCalendar();
-  }
-
-  function initializeCalendar() {
-
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'title',
-        right: 'prev,next today'
-      },
-      editable: false
-    });
-
-    addJsonSource();
-
-  }
-
-
-
-</script>
+  </script>
+<% end -%>
 
 <div class="row-fluid">
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705202854) do
+ActiveRecord::Schema.define(:version => 20130705223955) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20130705202854) do
     t.datetime "major_convention_approved"
     t.string   "url"
     t.text     "tournament_info"
+    t.string   "venue"
   end
 
   create_table "example_controllers", :force => true do |t|

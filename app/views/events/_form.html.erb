@@ -1,3 +1,25 @@
+<%= content_for :head do -%>
+  <script type="text/javascript">
+
+    var latitude = 0;
+    var longitude = 0;
+
+    $(function() {
+
+      $("#event_starts_at").change(function() {
+
+        if ($("#event_ends_at").val() == "") {
+          $("#event_ends_at").val($("#event_starts_at").val());
+        }
+
+      });
+
+    });
+
+  </script>
+<% end -%>
+
+
 <div class="box span12">
   <div class="box-header" data-original-title>
     <h2>
