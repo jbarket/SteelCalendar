@@ -65,3 +65,7 @@ ul.attendees li .time {
 input[placeholder], [placeholder], [placeholder] {
   color: #333 !important;
 }
+
+.event_show {
+  min-height: 500px;
+}
