@@ -9,7 +9,7 @@
       </h2>
       <div class="box-icon">
         <% if current_user and (current_user.admin? or current_user == @event.created_by) -%>
-          <%= link_to "<i class='icon-wrench'></i>".html_safe, edit_event_path(@event) -%>
+        <a href="#"><i class='icon-wrench'></i></a>a>
         <% end -%>
       </div>
     </div>
@@ -85,7 +85,8 @@
 
             <%= link_to "I've changed my mind! I'm not going.",
               nope_event_path(@event),
-              :class => "btn btn-large btn-warning" -%>
+              :class => "btn btn-large btn-warning",
+              :confirm => "Are you sure?" -%>
           <% else -%>
             <p>
               You currently <strong>aren't going</strong>
