@@ -15,8 +15,14 @@ class EventsController < ApplicationController
 
     end
 
-    if !params[:latitude].blank? and !params[:longitude].blank? and params[:distance] != "All"
-      @events = @events.near([params[:latitude], params[:longitude]], params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
+    unless params[:distance] == "All"
+
+      if !params[:latitude].blank? and !params[:longitude].blank?
+        @events = @events.near([params[:latitude], params[:longitude]], params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
+      elsif request.location
+        @events = @events.near(request.location, params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
+      end
+
     end
 
     respond_to do |format|
