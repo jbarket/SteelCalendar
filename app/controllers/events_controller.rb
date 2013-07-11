@@ -20,10 +20,7 @@ class EventsController < ApplicationController
       if !params[:latitude].blank? and !params[:longitude].blank?
         @events = @events.near([params[:latitude], params[:longitude]], params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
       elsif request.location
-        raise request.location.to_yaml
-        @events = @events.near(request.location, params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
-      else
-        raise "No location found, no idea. Ignore this PGs!"
+        @events = @events.near([request.location.latitude, request.location.longitude], params[:distance]) | @events.where(["major_convention = ? AND major_convention_approved IS NOT NULL", true])
       end
     end
 
