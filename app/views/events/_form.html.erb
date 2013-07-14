@@ -64,6 +64,16 @@
 
       <div class="control-group">
         <div class="field">
+          <%= f.label :event_type, "Event Type", :class => "control-label" %>
+          <div class="controls">
+            <%= f.collection_select :event_type, EventType.order("name"),
+              :id, :to_s, :class => "span6" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="field">
           <%= f.label :starts_at, "Start Date",
             :class => "control-label" %>
           <div class="controls">

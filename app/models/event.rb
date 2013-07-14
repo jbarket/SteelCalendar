@@ -7,7 +7,8 @@ class Event < ActiveRecord::Base
 
   has_many :attendees
   has_many :users, :through => :attendees
-
+  belongs_to :event_type
+  
   belongs_to :created_by, :class_name => "User"
 
 

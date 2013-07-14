@@ -26,6 +26,10 @@
       <dl>
         <dt>Event Date</dt>
         <dd><%= @event.prose_date -%></dd>
+        <% if @event.event_type -%>
+          <dt>Event Type</dt>
+          <dd><%= @event.event_type -%></dd>
+        <% end -%>
         <% if @event.url -%>
           <dt>Website</dt>
           <dd><%= link_to @event.url, @event.url -%></dd>

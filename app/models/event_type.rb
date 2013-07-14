@@ -1,3 +1,7 @@
 class EventType < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_many :events
+
+  def to_s
+    self.name
+  end
 end

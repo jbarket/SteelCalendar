@@ -6,12 +6,7 @@
 
     $(function() {
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-      } else {
-        error();
-      }
-
+      initializeCalendar();
 
       $("#distance").change(function() {
         $('#calendar').fullCalendar('removeEventSource',
@@ -20,15 +15,6 @@
       });
 
     });
-
-    function success(position) {
-
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-
-      initializeCalendar();
-
-    }
 
     function addJsonSource() {
       $('#calendar').fullCalendar('addEventSource',
@@ -41,14 +27,6 @@
             distance: $("#distance").val()
         }
       });
-    }
-
-    function error() {
-
-      latitude = "";
-      longitude = "";
-
-      initializeCalendar();
     }
 
     function initializeCalendar() {
@@ -64,8 +42,6 @@
       addJsonSource();
 
     }
-
-
 
   </script>
 <% end -%>

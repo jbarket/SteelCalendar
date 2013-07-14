@@ -4,4 +4,5 @@ json.array! @events do |event|
   json.start event.try(:starts_at).try(:to_date)
   json.end event.try(:ends_at).try(:to_date)
   json.url "/events/#{event.id}"
+  json.color event.try(:event_type).try(:color)
 end
