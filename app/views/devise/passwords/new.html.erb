@@ -1,12 +1,21 @@
-<h2>Forgot your password?</h2>
+<div class="row-fluid">
+  <div class="login-box">
+    <h2>Forgot your password?</h2>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name),
+      :html => { :class => "form-horizontal",
+      :method => :post }) do |f| %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+      <fieldset>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+        <%= f.email_field :email, :class => "input-large span12",
+          :placeholder => "email address" %>
 
-<%= render "devise/shared/links" %>
+        <div class="clearfix"></div>
+
+        <%= f.submit "Reset My Password", :class => "btn btn-primary span12" %>
+
+    <% end %>
+
+  </div><!--/span-->
+</div><!--/row-->
