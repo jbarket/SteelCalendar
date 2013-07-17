@@ -18,11 +18,12 @@
           marker_<%= event.id -%> = new google.maps.Marker({
             position: point,
             icon: <%= event.event_type_name.delete(' ').underscore -%>_icon,
+            animation: google.maps.Animation.DROP,
             map: gmap
           });
 
           marker_window_<%= event.id %> = new google.maps.InfoWindow({
-            content: "<%= escape_javascript event.map_content.html_safe -%>"
+            content: "<%= escape_javascript event.map_content -%>"
           });
 
           google.maps.event.addListener(marker_<%= event.id -%>, 'click', function() {
