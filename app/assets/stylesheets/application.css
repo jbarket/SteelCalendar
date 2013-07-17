@@ -69,3 +69,7 @@ input[placeholder], [placeholder], [placeholder] {
 .event_show {
   min-height: 550px;
 }
+
+#event_map {
+  height: 500px;
+}

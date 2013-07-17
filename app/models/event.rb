@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   has_many :attendees
   has_many :users, :through => :attendees
   belongs_to :event_type
-  
+
   belongs_to :created_by, :class_name => "User"
 
 
@@ -48,6 +48,10 @@ class Event < ActiveRecord::Base
 
   def going?(user)
     self.users.include?(user)
+  end
+
+  def map_content
+    self.calendar_name
   end
 
 end

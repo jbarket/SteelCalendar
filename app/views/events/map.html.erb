@@ -1,0 +1,110 @@
+<%= content_for :head do -%>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false" type="text/javascript"></script>
+<% end -%>
+
+<script type="text/javascript">
+  <% @events.each do |event| -%>
+    <% if event.mappable? -%>
+      var marker_<%= event.id -%>;
+      var marker_window_<%= event.id  -%>;
+    <% end -%>
+  <% end -%>
+
+  function initialize_event_data(gmap, gicon) {
+    <% @events.each do |event| -%>
+      <% if event.mappable? -%>
+        var point = new google.maps.LatLng(<%= event.latitude %>, <%= event.longitude %>);
+        bounds.extend(point);
+
+        marker_<%= event.id -%> = new google.maps.Marker({
+          position: point,
+          icon: gicon,
+          map: gmap
+        });
+
+        marker_window_<%= event.id %> = new google.maps.InfoWindow({
+          content: "<%= escape_javascript evemt.map_content -%>"
+        });
+
+        google.maps.event.addListener(marker_<%= event.id -%>, 'click', function() {
+
+          if (openWindow) { openWindow.close(); }
+          marker_window_<%= event.id %>.open(event_map, marker_<%= event.id %>);
+          openWindow = marker_window_<%= event.id -%>;
+        });
+
+        $("#event_event.id -%>").click( function(event) {
+          event.preventDefault();
+          if (openWindow) { openWindow.close(); }
+          marker_window_<%= event.id -%>.open(event_map, marker_<%= event.id -%>);
+          openWindow = marker_window_<%= event.id -%>;
+          return false;
+        });
+
+      <% end -%>
+    <% end -%>
+
+    event_map.fitBounds(bounds);
+  };
+
+  var event_map;
+
+  var myOptions = {
+    center: new google.maps.LatLng(0,0),
+    zoom: 6,
+    zoomControl: true,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.SMALL
+    },
+    mapTypeControl: true,
+    scaleControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    },
+    panControl: false,
+    streetViewControl: false,
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+
+  var bounds = new google.maps.LatLngBounds();
+
+  var green_icon = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: "blue",
+    fillOpacity: 1,
+    scale: 3.3,
+    strokeColor: "blue"
+  };
+
+  var openWindow;
+
+  function initialize_event_map() {
+    event_map = new google.maps.Map(document.getElementById("event_map"), myOptions);
+
+    initialize_event_data(event_map, green_icon);
+
+    event_map.fitBounds(bounds);
+  };
+
+  $(function() {
+    initialize_event_map();
+  })
+
+</script>
+
+<div class="row-fluid sortable">
+
+  <div class="box span12">
+    <div class="box-header">
+      <h2>
+        <i class="icon-calendar"></i>
+        <span class="break"></span>
+        Event Map
+      </h2>
+    </div>
+    <div class="box-content">
+      <div id="event_map"></div>
+    </div>
+  </div>
+
+</div>

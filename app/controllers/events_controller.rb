@@ -30,6 +30,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def map
+    @events = Event.order("starts_at ASC").where("starts_at >= ? AND ends_at >= ?", Date.today, Date.today)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json # index.json.jbuilder
+    end
+  end
+
+
   def mine
 
     @events = current_user.events.order("starts_at ASC")
