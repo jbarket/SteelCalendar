@@ -75,7 +75,7 @@
     var openWindow;
 
     function initialize_event_map() {
-      event_map = new google.maps.Map(document.getElementById("event_map"), myOptions);
+      event_map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
       initialize_event_data(event_map);
 
@@ -100,7 +100,7 @@
       </h2>
     </div>
     <div class="box-content">
-      <div id="event_map"></div>
+      <div id="map_canvas"></div>
     </div>
   </div>
 
