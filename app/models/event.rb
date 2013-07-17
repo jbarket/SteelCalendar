@@ -18,6 +18,18 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def event_type_name
+
+    # this is here to keep older events without types
+    # from blowing the map up
+
+    if self.event_type
+      return self.event_type.name
+    else
+      return "other"
+    end
+  end
+
   def to_s
     self.name
   end
@@ -51,7 +63,7 @@ class Event < ActiveRecord::Base
   end
 
   def map_content
-    self.calendar_name
+    "<a href='/events/#{self.id}>#{self.name}</a><br />#{self.city}, #{self.state}<br />#{self.event_type}"
   end
 
 end

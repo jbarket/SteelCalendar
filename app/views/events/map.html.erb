@@ -17,7 +17,7 @@
 
           marker_<%= event.id -%> = new google.maps.Marker({
             position: point,
-            icon: gicon,
+            icon: <%= event.event_type_name.delete(' ').underscore -%>_icon,
             map: gmap
           });
 
@@ -59,13 +59,17 @@
 
     var bounds = new google.maps.LatLngBounds();
 
-    var green_icon = {
-      path: google.maps.SymbolPath.CIRCLE,
-      fillColor: "blue",
-      fillOpacity: 1,
-      scale: 3.3,
-      strokeColor: "blue"
-    };
+    <% EventType.all.each do |et| -%>
+
+      var <%= et.name.delete(' ').underscore -%>_icon = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: "<%= et.color -%>",
+        fillOpacity: 1,
+        scale: 3.3,
+        strokeColor: "black"
+      };
+
+    <% end -%>
 
     var openWindow;
 
