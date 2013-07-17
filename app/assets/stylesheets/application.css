@@ -70,6 +70,6 @@ input[placeholder], [placeholder], [placeholder] {
   min-height: 550px;
 }
 
-#event_map {
+#map_canvas.event_map[] {
   height: 500px;
 }
