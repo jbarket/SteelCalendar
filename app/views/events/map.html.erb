@@ -22,7 +22,7 @@
           });
 
           marker_window_<%= event.id %> = new google.maps.InfoWindow({
-            content: "<%= escape_javascript event.map_content -%>"
+            content: "<%= escape_javascript event.map_content.html_safe -%>"
           });
 
           google.maps.event.addListener(marker_<%= event.id -%>, 'click', function() {
@@ -65,8 +65,8 @@
         path: google.maps.SymbolPath.CIRCLE,
         fillColor: "<%= et.color -%>",
         fillOpacity: 1,
-        scale: 3.3,
-        strokeColor: "black"
+        scale: 3.5,
+        strokeColor: "<%= et.color -%>"
       };
 
     <% end -%>
