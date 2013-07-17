@@ -23,7 +23,7 @@
         });
 
         marker_window_<%= event.id %> = new google.maps.InfoWindow({
-          content: "<%= escape_javascript evemt.map_content -%>"
+          content: "<%= escape_javascript event.map_content -%>"
         });
 
         google.maps.event.addListener(marker_<%= event.id -%>, 'click', function() {
