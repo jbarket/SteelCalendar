@@ -9,7 +9,7 @@
       <% end -%>
     <% end -%>
 
-    function initialize_event_data(gmap, gicon) {
+    function initialize_event_data(gmap) {
       <% @events.each do |event| -%>
         <% if event.mappable? -%>
           var point = new google.maps.LatLng(<%= event.latitude %>, <%= event.longitude %>);
@@ -76,7 +76,7 @@
     function initialize_event_map() {
       event_map = new google.maps.Map(document.getElementById("event_map"), myOptions);
 
-      initialize_event_data(event_map, green_icon);
+      initialize_event_data(event_map);
 
       event_map.fitBounds(bounds);
     };
