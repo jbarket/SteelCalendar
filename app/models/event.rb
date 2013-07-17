@@ -63,7 +63,13 @@ class Event < ActiveRecord::Base
   end
 
   def map_content
-    "<a href='/events/#{self.id}'>#{self.name}</a><br />#{self.city}, #{self.state}<br />#{self.event_type}".html_safe
+    content = "<a href='/events/#{self.id}'>#{self.name}</a><br />#{self.city}, #{self.state}"
+
+    if self.event_type
+      content = "#{content} - #{self.event_type}"
+    end
+
+    content.html_safe
   end
 
 end
