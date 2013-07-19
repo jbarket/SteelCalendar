@@ -1,9 +1,25 @@
 /*
  *= require bootstrap
  *= require bootstrap-responsive.min
+ *= require retina
+ *= require jquery-ui-1.10.3.custom.css
+ *= require fullcalendar.css
+ *= require chosen.css
+ *= require uniform.default.css
+ *= require jquery.cleditor.css
+ *= require jquery.noty.css
+ *= require noty_theme_default.css
+ *= require elfinder.min.css
+ *= require elfinder.theme.css
+ *= require jquery.iphone.toggle.css
+ *= require uploadify.css
+ *= require jquery.gritter.css
+ *= require font-awesome.min.css
+ *= require font-awesome-ie7.min.css
+ *= require glyphicons.css
+ *= require halflings.css
  *= require style.min
  *= require style-responsive.min
- *= require retina
  *= require_self
  */
 
