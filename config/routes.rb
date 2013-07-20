@@ -17,6 +17,7 @@ Steelcalendar::Application.routes.draw do
       get 'mine'
       get 'manage'
       get 'map'
+      get 'stats'
     end
     member do
       get 'going'

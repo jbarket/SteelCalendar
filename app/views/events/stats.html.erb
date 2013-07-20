@@ -1,0 +1,25 @@
+<div class="row-fluid sortable">
+
+  <div class="box span12">
+    <div class="box-header">
+      <h2>
+        <i class="icon-bar-chart"></i>
+        <span class="break"></span>
+        Event Statistics
+      </h2>
+    </div>
+    <div class="box-content">
+
+      <dl>
+        <dt>Total Events</dt>
+        <dd><%= Event.count -%></dd>
+        <dt>Total Users</dt>
+        <dd><%= User.count -%></dd>
+        <dt>Total Event Attendees</dt>
+        <dd><%= Attendee.count -%></dd>
+      </dl>
+
+    </div>
+  </div>
+
+</div>
