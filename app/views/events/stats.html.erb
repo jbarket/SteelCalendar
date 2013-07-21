@@ -14,23 +14,22 @@
         <% end -%>
       ]
 
-      var plot = $.plot($("#event_chart"),
+      var plot = $.plot("#event_chart",
         [ { data: by_starts_at, label: "Occuring Per Month"},
-          { data: by_created_at, label: "Created Per Month" } ],
+        { data: by_created_at, label: "Created Per Month" } ],
         {
           series: {
-            bars: {  show: true,
-                     barWidth: 0.6,
-                     align: "center"
-            },
-          },
-          xaxis: {
-            mode: "categories",
-            tickLength: 0
+          bars: {
+            show: true,
+            barWidth: 0.6,
+            align: "center"
           }
-          colors: ["#FA5833", "#2FABE9"]
-       });
-
+        },
+        xaxis: {
+          mode: "categories",
+          tickLength: 0
+        }
+      });
     });
   </script>
 <% end -%>
