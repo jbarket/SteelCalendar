@@ -14,7 +14,7 @@
         <% end -%>
       ]
 
-      var plot = $.plot($("#sincos"),
+      var plot = $.plot($("#event_chart"),
            [ { data: by_starts_at, label: "Occuring Per Month"},
              { data: by_created_at, label: "Created Per Month" } ],
            {
@@ -47,7 +47,7 @@
       }
 
       var previousPoint = null;
-      $("#sincos").bind("plothover", function (event, pos, item) {
+      $("#event_chart").bind("plothover", function (event, pos, item) {
         $("#x").text(pos.x.toFixed(2));
         $("#y").text(pos.y.toFixed(2));
 
@@ -86,7 +86,7 @@
       </h2>
     </div>
     <div class="box-content">
-      <div id="sincos" class="center" style="height:300px;" ></div>
+      <div id="event_chart" class="center" style="height: 500px;" ></div>
     </div>
   </div>
 
