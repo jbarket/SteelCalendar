@@ -41,8 +41,8 @@ class EventsController < ApplicationController
 
 
   def stats
-    @event_by_starts_at = Event.count(:group => "date_trunc('month', starts_at)", :order => "date_trunc('month', starts_at) ASC")
-    @event_by_created_at = Event.count(:group => "date_trunc('month', created_at)", :order => "date_trunc('month', created_at) ASC")
+    @events_by_starts_at = Event.count(:group => "date_trunc('month', starts_at)", :order => "date_trunc('month', starts_at) ASC")
+    @events_by_created_at = Event.count(:group => "date_trunc('month', created_at)", :order => "date_trunc('month', created_at) ASC")
   end
 
   def mine
