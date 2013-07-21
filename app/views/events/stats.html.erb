@@ -19,23 +19,17 @@
           { data: by_created_at, label: "Created Per Month" } ],
         {
           series: {
-            lines: {  show: true,
-                      lineWidth: 2,
-                   },
-            points: { show: true },
-            shadowSize: 2
-        },
-        xaxis: {
-          mode: "categories",
-          tickLength: 0
-        },
-        grid: { hoverable: true,
-                clickable: true,
-                tickColor: "#dddddd",
-                borderWidth: 0
-              },
-        colors: ["#FA5833", "#2FABE9"]
-      });
+            bars: {  show: true,
+                     barWidth: 0.6,
+                     align: "center"
+            },
+          },
+          xaxis: {
+            mode: "categories",
+            tickLength: 0
+          }
+          colors: ["#FA5833", "#2FABE9"]
+       });
 
     });
   </script>
