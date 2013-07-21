@@ -4,13 +4,13 @@
 
       var by_starts_at = [
         <% @events_by_starts_at.each do |e| -%>
-          ["<%= e[0].to_s(:short) -%>", <%= e[1] -%>],
+          ["<%= e[0].to_date.strftime('%B %Y') -%>", <%= e[1] -%>],
         <% end -%>
       ]
 
       var by_created_at = [
         <% @events_by_created_at.each do |e| -%>
-          ["<%= e[0].to_s(:short) -%>", <%= e[1] -%>],
+          ["<%= e[0].to_date.strftime('%B %Y') -%>", <%= e[1] -%>],
         <% end -%>
       ]
 
