@@ -9,6 +9,7 @@
 //= require jquery.dataTables.min.js
 //= require excanvas.js
 //= require jquery.flot.js
+//= require jquery.flot.categories.js
 //= require jquery.flot.pie.js
 //= require jquery.flot.stack.js
 //= require jquery.flot.resize.min.js
