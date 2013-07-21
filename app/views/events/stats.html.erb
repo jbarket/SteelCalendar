@@ -5,11 +5,13 @@
       var by_starts_at = [
         <% @events_by_starts_at.each do |e| -%>
           [<%= e[0] -%>, <%= e[1] -%>],
+        <% end -%>
       ]
 
       var by_created_at = [
         <% @events_by_created_at.each do |e| -%>
           [<%= e[0] -%>, <%= e[1] -%>],
+        <% end -%>
       ]
 
       var plot = $.plot($("#sincos"),
