@@ -2,15 +2,20 @@
   <script type="text/javascript">
     $(function() {
 
-      var sin = [], cos = [];
+      var by_starts_at = [
+        <% @events_by_starts_at.each do |e| -%>
+          [<%= e[0] -%>, <%= e[1] -%>],
+      ]
 
-      for (var i = 0; i < 14; i += 0.5) {
-        sin.push([i, Math.sin(i)/i]);
-        cos.push([i, Math.cos(i)]);
-      }
+      var by_created_at = [
+        <% @events_by_created_at.each do |e| -%>
+          [<%= e[0] -%>, <%= e[1] -%>],
+      ]
 
       var plot = $.plot($("#sincos"),
-           [ { data: sin, label: "sin(x)/x"}, { data: cos, label: "cos(x)" } ], {
+           [ { data: by_starts_at, label: "Occuring Per Month"},
+             { data: by_created_at, label: "Created Per Month" } ],
+           {
              series: {
                lines: { show: true,
                   lineWidth: 2,
@@ -23,7 +28,6 @@
                  tickColor: "#dddddd",
                  borderWidth: 0
                },
-             yaxis: { min: -1.2, max: 1.2 },
              colors: ["#FA5833", "#2FABE9"]
            });
 
