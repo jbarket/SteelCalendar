@@ -8,10 +8,13 @@
 
       initializeCalendar();
 
-      $("#distance").change(function() {
+      $("#search").click(function(event) {
+        event.preventDefault();
+
         $('#calendar').fullCalendar('removeEventSource',
         '/events.json');
         addJsonSource();
+
       });
 
     });
@@ -22,7 +25,8 @@
           url: '/events.json',
           type: 'GET',
           data: {
-            distance: $("#distance").val()
+            distance: $("#distance").val(),
+            zipcode: $("#zipcode").val()
         }
       });
     }
@@ -78,6 +82,11 @@
           <option value="1000">1000 miles</option>
           <option value="All">All Events</option>
         </select>
+
+        <label for="zipcode">Zip Code</label>
+        <input type="text" id="zipcode" />
+
+        <a href="#" class="btn btn-primary" id="search">Search Events</a>
 
     </div>
   </div>
